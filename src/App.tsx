@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Box,
     Button,
@@ -14,7 +14,6 @@ import {
 import CardView from './CardView';
 import {AnalizeData, AnalizeResponse} from './AnalizeResponse';
 import axios, {AxiosResponse} from 'axios';
-import {sampleRequest} from './options';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -57,8 +56,20 @@ const useStyles = makeStyles((theme) => ({
 function App() {
     const classes = useStyles();
     const [responseError, setResponseError] = useState<string | null>(null);
-    const [request, setRequest] = useState(sampleRequest);
+    const [request, setRequest] = useState('');
     const [response, setResponse] = useState<AnalizeData[] | null>(null);
+
+    useEffect(() => {
+        fetch('/sample-text.txt')
+            .then((r) => r.text())
+            .then(text => {
+                setRequest(text);
+            });
+    }, []);
+
+    // if (!requestLoaded && !requestLoading) {
+    //     setRequestLoading(true);
+    // }
 
     const analize = () => {
         setResponse(null);
