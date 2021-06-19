@@ -67,10 +67,6 @@ function App() {
             });
     }, []);
 
-    // if (!requestLoaded && !requestLoading) {
-    //     setRequestLoading(true);
-    // }
-
     const analize = () => {
         setResponse(null);
         setResponseError(null);
