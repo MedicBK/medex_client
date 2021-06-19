@@ -4,10 +4,12 @@ import {CardItemsViewProps} from './CardItemsViewProps';
 import CheckIcon from '@material-ui/icons/Check';
 import {AnalizeTypeEnum} from './AnalizeResponse';
 import {blue, green, grey, red} from '@material-ui/core/colors';
+import {DrugIcon} from './DrugIcon';
 
 const useStyles = makeStyles((theme) => ({
     item: {
         display: 'flex',
+        alignItems: 'flex-start',
     },
     itemText: {
         marginLeft: theme.spacing(1),
@@ -23,7 +25,7 @@ const CardItemsView: React.FC<CardItemsViewProps> = ({items, type}: CardItemsVie
 
         switch (type) {
             case AnalizeTypeEnum.DRUGS:
-                icon = <CheckIcon style={{ color: color }} />;
+                icon = <DrugIcon style={{ color: color }} />;
                 break;
             case AnalizeTypeEnum.EXAMS:
                 icon = <CheckIcon style={{ color: color }} />;

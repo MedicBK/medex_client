@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {
+    Box,
     Button,
     Card,
     CardActions,
@@ -15,20 +16,34 @@ import {AnalizeData, AnalizeResponse} from './AnalizeResponse';
 import axios, {AxiosResponse} from 'axios';
 
 const useStyles = makeStyles((theme) => ({
+    root: {
+        height: '100%',
+        padding: theme.spacing(2),
+        paddingLeft: theme.spacing(8),
+        paddingRight: theme.spacing(8),
+    },
     wrapper: {
         padding: theme.spacing(2),
     },
     resultPaper: {
-        padding: theme.spacing(2),
+        padding: theme.spacing(4),
     },
-    root: {
+    card: {
         width: '100%',
+        // padding: theme.spacing(4),
     },
     cardHeader: {
-        paddingBottom: 0
+        paddingBottom: 0,
+        paddingLeft: theme.spacing(4),
+        paddingRight: theme.spacing(4),
     },
-    title: {
-        fontSize: 14,
+    cardContent: {
+        paddingLeft: theme.spacing(4),
+        paddingRight: theme.spacing(4),
+    },
+    cardAction: {
+        paddingLeft: theme.spacing(4),
+        paddingRight: theme.spacing(4),
     },
     textarea: {
         width: '100%',
@@ -87,70 +102,75 @@ function App() {
     };
 
     return (
-        <Grid container spacing={4} className={classes.wrapper}>
-            <Grid item xs={12}>
-                <Card className={classes.root}
-                      variant="elevation"
-                >
-                    <CardHeader title={'Текст запроса'} className={classes.cardHeader}>
-                    </CardHeader>
-                    <CardContent>
-                        <TextField
-                            className={classes.textarea}
-                            multiline
-                            rowsMax={20}
-                            rows={10}
-                            value={request}
-                            onChange={handleChangeRequest}
-                            variant="outlined"
-                        />
-                    </CardContent>
-                    <CardActions>
-                        <Button variant={'text'}
-                                style={{marginLeft: 'auto'}}
-                                color={'primary'}
-                                onClick={analize}>Анализ</Button>
-                    </CardActions>
-                </Card>
-            </Grid>
-
-            {responseError &&
-            <Grid item xs={12}>
-                <Typography color={'error'}>
-                    {responseError}
-                </Typography>
-            </Grid>
-            }
-
-            {response &&
-            <Grid item xs={12}>
-                <Paper className={classes.resultPaper} elevation={2}>
-                    <Grid container
-                          spacing={2}
-                          direction={'row'}
+        <Box className={classes.root}>
+            <Grid container
+                  spacing={4}
+                  className={classes.wrapper}
+            >
+                <Grid item xs={12}>
+                    <Card className={classes.card}
+                          variant="elevation"
                     >
-                        {response?.map((data, index) => {
-                            return (
-                                <Grid item
-                                      key={index}
-                                      xl={6}
-                                      lg={6}
-                                      md={6}
-                                      sm={6}
-                                      xs={12}
-                                >
-                                    <CardView
-                                        data={data}
-                                    />
-                                </Grid>
-                            )
-                        })}
-                    </Grid>
-                </Paper>
-            </Grid>
-            }
+                        <CardHeader title={'Текст запроса'} className={classes.cardHeader}>
+                        </CardHeader>
+                        <CardContent className={classes.cardContent}>
+                            <TextField
+                                className={classes.textarea}
+                                multiline
+                                rowsMax={20}
+                                rows={10}
+                                value={request}
+                                onChange={handleChangeRequest}
+                                variant="outlined"
+                            />
+                        </CardContent>
+                        <CardActions className={classes.cardAction}>
+                            <Button variant={'text'}
+                                    style={{marginLeft: 'auto'}}
+                                    color={'primary'}
+                                    onClick={analize}>Анализ</Button>
+                        </CardActions>
+                    </Card>
+                </Grid>
 
-        </Grid>
+                {responseError &&
+                <Grid item xs={12}>
+                    <Typography color={'error'}>
+                        {responseError}
+                    </Typography>
+                </Grid>
+                }
+
+                {response &&
+                <Grid item xs={12}>
+                    <Paper className={classes.resultPaper} elevation={2}>
+                        <Grid container
+                              spacing={4}
+                              direction={'row'}
+                        >
+                            {response?.map((data, index) => {
+                                return (
+                                    <Grid item
+                                          key={index}
+                                          xl={6}
+                                          lg={6}
+                                          md={6}
+                                          sm={6}
+                                          xs={12}
+                                    >
+                                        <CardView
+                                            data={data}
+                                        />
+                                    </Grid>
+                                )
+                            })}
+                        </Grid>
+                    </Paper>
+                </Grid>
+                }
+
+            </Grid>
+        </Box>
     );
 }
 
