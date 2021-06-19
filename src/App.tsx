@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
     cardAction: {
         paddingLeft: theme.spacing(4),
         paddingRight: theme.spacing(4),
+        paddingBottom: theme.spacing(4),
     },
     textarea: {
         width: '100%',
@@ -125,7 +126,7 @@ function App() {
                             />
                         </CardContent>
                         <CardActions className={classes.cardAction}>
-                            <Button variant={'text'}
+                            <Button variant={'contained'}
                                     style={{marginLeft: 'auto'}}
                                     color={'primary'}
                                     onClick={analize}>Анализ</Button>
