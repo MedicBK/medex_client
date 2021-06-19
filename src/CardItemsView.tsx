@@ -5,11 +5,12 @@ import CheckIcon from '@material-ui/icons/Check';
 import {AnalizeTypeEnum} from './AnalizeResponse';
 import {blue, green, grey, red} from '@material-ui/core/colors';
 import {DrugIcon} from './DrugIcon';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 const useStyles = makeStyles((theme) => ({
     item: {
         display: 'flex',
-        alignItems: 'flex-start',
+        // alignItems: 'flex-start',
         paddingBottom: theme.spacing(2),
         paddingLeft: theme.spacing(2),
         paddingRight: theme.spacing(2),
@@ -34,7 +35,7 @@ const CardItemsView: React.FC<CardItemsViewProps> = ({items, type}: CardItemsVie
                 icon = <CheckIcon style={{ color: color }} />;
                 break;
             case AnalizeTypeEnum.STANDARD:
-                icon = <CheckIcon style={{ color: color }} />;
+                icon = <CheckCircleIcon style={{ color: color }} />;
                 break;
 
             default:
