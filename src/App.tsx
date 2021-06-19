@@ -14,6 +14,7 @@ import {
 import CardView from './CardView';
 import {AnalizeData, AnalizeResponse} from './AnalizeResponse';
 import axios, {AxiosResponse} from 'axios';
+import {sampleRequest} from './options';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -56,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
 function App() {
     const classes = useStyles();
     const [responseError, setResponseError] = useState<string | null>(null);
-    const [request, setRequest] = useState('');
+    const [request, setRequest] = useState(sampleRequest);
     const [response, setResponse] = useState<AnalizeData[] | null>(null);
 
     const analize = () => {

@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom: theme.spacing(2),
         paddingLeft: theme.spacing(2),
         paddingRight: theme.spacing(2),
+        cursor: 'default',
     },
     itemText: {
         marginLeft: theme.spacing(2),
