@@ -134,17 +134,16 @@ function App() {
                     </Card>
                 </Grid>
 
-                {responseError &&
-                <Grid item xs={12}>
-                    <Typography color={'error'}>
-                        {responseError}
-                    </Typography>
-                </Grid>
-                }
-
-                {response &&
+                {(response || responseError) &&
                 <Grid item xs={12}>
                     <Paper className={classes.resultPaper} elevation={2}>
+                        {responseError &&
+                        <Typography color={'error'}>
+                            {responseError}
+                        </Typography>
+                        }
+
+                        {response &&
                         <Grid container
                               spacing={4}
                               direction={'row'}
@@ -166,6 +165,7 @@ function App() {
                                 )
                             })}
                         </Grid>
+                        }
                     </Paper>
                 </Grid>
                 }
